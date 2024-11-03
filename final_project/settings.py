@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'drf_spectacular',
+    'ml_api',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +90,17 @@ DATABASES = {
     }
 }
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',  # Sử dụng AutoSchema của drf-spectacular
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Machine Learning API',
+    'DESCRIPTION': 'Provide API for sentiment analysis',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

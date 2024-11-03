@@ -41,7 +41,12 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-4. Setup MySQL database (In this project, we use MySQL in a Docker container)
+4. Create a `.env` file in the root directory of the project and add the following variables:
+```bash
+copy .env.local .env
+```
+
+5. Setup MySQL database (In this project, we use MySQL in a Docker container)
 - Pull MySQL image
 ```bash
 docker pull mysql
@@ -67,17 +72,22 @@ docker exec -it mysqldb mysql -uroot -p # After that, enter your password
 CREATE DATABASE <your-database-name>;
 ```
 
-5. Migrate the database
+6. Download the spaCy model
+```bash
+python -m spacy download en_core_web_sm
+```
+
+7. Migrate the database
 ```bash
 python manage.py migrate
 ```
 
-6. Create a superuser
+8. Create a superuser
 ```bash
 python manage.py createsuperuser
 ```
 
-7. Run the server
+9. Run the server
 ```bash
 python manage.py runserver
 ```

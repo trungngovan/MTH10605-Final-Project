@@ -13,3 +13,23 @@ PyMySQL==1.1.1
 # python-dotenv
 # https://github.com/theskumar/python-dotenv
 python-dotenv==1.0.1
+
+# https://pypi.org/project/django-extensions/
+django-extensions==3.2.3
+
+# Apply swagger to Django REST framework
+drf-spectacular==0.27.2
+
+contractions==0.1.73
+
+pyspellchecker==0.8.1
+
+stop-words==2018.7.23
+
+nltk==3.9.1
+
+NlpToolkit-Corpus==1.0.25
+
+textblob==0.18.0.post0
+
+spacy==3.8.2

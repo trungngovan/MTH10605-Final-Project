@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: Machine Learning API
+  version: 1.0.0
+  description: Provide API for sentiment analysis
+paths:
+  /api/v1/keyword/:
+    get:
+      operationId: v1_keyword_list
+      description: Keyword viewset.
+      tags:
+      - v1
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Keyword'
+          description: ''
+    post:
+      operationId: v1_keyword_create
+      description: Keyword viewset.
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Keyword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Keyword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Keyword'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Keyword'
+          description: ''
+  /api/v1/keyword/{id}/:
+    get:
+      operationId: v1_keyword_retrieve
+      description: Keyword viewset.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this keyword.
+        required: true
+      tags:
+      - v1
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Keyword'
+          description: ''
+    delete:
+      operationId: v1_keyword_destroy
+      description: Keyword viewset.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this keyword.
+        required: true
+      tags:
+      - v1
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Keyword:
+      type: object
+      description: Keyword serializer.
+      properties:
+        word:
+          type: string
+          maxLength: 255
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        score:
+          type: number
+          format: double
+      required:
+      - type
+      - word
+    TypeEnum:
+      enum:
+      - POSITIVE
+      - NEGATIVE
+      - NEUTRAL
+      type: string
+      description: |-
+        * `POSITIVE` - positive
+        * `NEGATIVE` - negative
+        * `NEUTRAL` - neutral
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
