@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from ml_api import views
 
 
 urlpatterns = [
@@ -27,5 +28,6 @@ urlpatterns = [
     path(
         "api/v1/",
         include("ml_api.urls"),
-    )
+    ),
+    path("", views.IndexView.as_view(), name="index"),
 ]
